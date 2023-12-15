@@ -7,16 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<!--TELA DE LOGIN-->
 <body class="flex justify-center items-center relative h-screen w-screen">   
 
     <div class="absolute inset-0 filter blur-sm bg-center flex justify-center items-center">
 
         <img class="h-screen w-screen object-cover" src="imagem/plantas2.jpg" alt="imagem folhas">
 
-    </div><!-- blur-sm before:: img divs -->
+    </div>
 
-    <div class="mx-auto max-w-md bg-white md:max-w-2xl rounded-xl shadow-md overflow-hidden relative "> <!---->
+    <div class="mx-auto max-w-md bg-white md:max-w-2xl rounded-xl shadow-md overflow-hidden relative "> 
 
         <div class="md:flex ">
 
@@ -32,7 +31,7 @@
                     Bem-vindo!
                 </h1>
 
-                <form action="login.php" method="GET" autocomplete="on"> 
+                <form action="login.php" method="POST" autocomplete="on"> 
 
                     <div class="flex items-center justify-center">
     
@@ -61,8 +60,10 @@
                         <a href=""><input class="cursor-pointer" type="submit" value="LOGIN" ></a>
     
                     </div>
+
+                    <input type="hidden" value="1" name="val1">
     
-                    <a href="manutenção.html" name="esqueceu_senha" class="flex justify-center text-sm text-green-700 py-2 ">
+                    <a href="503.html" class="flex justify-center text-sm text-green-700 py-2 ">
                         Esqueceu sua senha ?
                     </a>
 
@@ -75,6 +76,3 @@
         </div>
 </body>
 </html>
-
-<!-- tela de login com o metodo get, simples
-     direcionada para uma tela em php (login.php) -->
