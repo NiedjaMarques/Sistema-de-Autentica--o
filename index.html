@@ -31,11 +31,13 @@
                     Bem-vindo!
                 </h1>
 
+                <!-- FORMULARIO  -->
                 <form action="login.php" method="POST" autocomplete="on"> 
 
+                    <!-- INPUT EMAIL -->
                     <div class="flex items-center justify-center">
     
-                        <label for="login" class="text-green-600 drop-shadow-md"> 
+                        <label for="email" class="text-green-600 drop-shadow-md"> 
     
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
     
@@ -44,7 +46,8 @@
                         <input class="ml-2 border rounded-md focus:outline-none p-2 w-52 drop-shadow-md" type="email" name="email" id="email" placeholder="User e-mail" autocomplete="email" required maxlength="40">
     
                     </div>
-    
+                    
+                    <!-- INPUT SENHA -->
                     <div class="flex items-center justify-center p-2"> 
                         
                         <label for="senha" class="text-green-600 drop-shadow-md">
@@ -54,20 +57,23 @@
                         <input class="ml-2 border rounded-md focus:outline-none p-2 w-52 drop-shadow-md" type="password" name="senha" id="senha" placeholder="Password" autocomplete="current-password" required minlength="8">
     
                     </div>
-    
+
+                     <!-- INPUT SUBMIT -->    
                     <div class="flex border justify-center p-3 w-36 h-26 mx-auto my-3 sm:my-4 text-sm font-bold text-white rounded-md bg-gradient-to-r from-green-400 to-green-600 cursor-pointer"> 
     
-                        <a href=""><input class="cursor-pointer" type="submit" value="LOGIN" ></a>
+                        <input class="cursor-pointer" type="submit" name="submit" value="LOGIN">
     
                     </div>
-
-                    <input type="hidden" value="1" name="val1">
-    
-                    <a href="503.html" class="flex justify-center text-sm text-green-700 py-2 ">
+                    
+                     <!-- LINK ERRO - PAGINA EM MANUTENÇÃO -->
+                    <a href="##" class="flex justify-center text-sm text-green-700 py-2 ">
                         Esqueceu sua senha ?
                     </a>
 
-                    <a href="##" class="flex justify-center text-sm text-green-700 py-2 ">Cadastre-se</a>
+                     <!-- LINK ERRO - PAGINA EM MANUTENÇÃO  -->
+                    <a href="##" class="flex justify-center text-sm text-green-700 py-2 ">
+                        Cadastre-se
+                    </a>
     
                 </form>  
 
