@@ -22,12 +22,19 @@
         //se encontrar um usuario com as credenciais fornecidas acima
         $usuario = $result->fetch_assoc();
         $nomeUsuario = $usuario['nome'];
-        echo 'bem vindo ' . $nomeUsuario;
+
+        // Inicia a sessão e armazena o nome do usuário nela
+        session_start();
+        $_SESSION['nomeUsuario'] = $nomeUsuario;
+
+        header('Location: welcome.php');
+        exit;
+
     } else {
-        echo "Credenciais inválidas. Por favor, tente novamente.";
+        header('Location: index.html');
+        exit;
     }
     
-
     $con->close();
     
 
