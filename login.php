@@ -31,7 +31,9 @@
         exit;
 
     } else {
-        header('Location: index.html');
+        $errorCode = 404;
+        $errorMessage = "Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.";
+        header("Location: error.php?code=$errorCode&message=$errorMessage");
         exit;
     }
     
