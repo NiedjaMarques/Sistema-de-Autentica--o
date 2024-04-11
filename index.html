@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autenticação</title>
+    <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -66,12 +66,12 @@
                     </div>
                     
                      <!-- LINK ERRO - PAGINA EM MANUTENÇÃO -->
-                    <a href="##" class="flex justify-center text-sm text-green-700 py-2 ">
+                    <a href="##" onclick="manutençao()" class="flex justify-center text-sm text-green-700 py-2 ">
                         Esqueceu sua senha ?
                     </a>
 
                      <!-- LINK ERRO - PAGINA EM MANUTENÇÃO  -->
-                    <a href="##" class="flex justify-center text-sm text-green-700 py-2 ">
+                    <a href="##" onclick="manutençao()" class="flex justify-center text-sm text-green-700 py-2 ">
                         Cadastre-se
                     </a>
     
@@ -80,5 +80,12 @@
             </div>
 
         </div>
+
+        
+        <script>
+            function manutençao(){
+                window.location.href = 'error.php?code=503&message=Desculpe, a página está em manutenção. Por favor, tente novamente mais tarde.';                
+            }
+        </script>
 </body>
 </html>
