@@ -1,70 +1,90 @@
 <?php
-    require_once 'LoginController.php';
-    class Usuario{
+    require_once 'app\config\Config.php';
+    //require_once 'app\controller\LoginController.php';
+    require_once 'lib\database\conexao.php';
+    require_once './index.php';
+    //require_once 'app\config\config.php';
+    //require_once 'app\config\error.php';
+  //  require_once 'app/view/error.php';
+    use lib\database\Conexao;
+
+    class Usuario {
         private $id;
         private $usuario;
         private $senha;
         private $email;
+        private $nome;
+        private $dataNasc;
 
-        public function __construct($usuario, $senha, $email){
+        public function __construct($email, $senha){
             $this->usuario = $usuario;
             $this->senha = $senha;
-            $this->email = $email;  
+            $this->email = $email;            
+            $this->nome = $nome;
+            $this->dataNasc = $dataNasc;
         }
+        
+        public function logar($email, $senha){
+            if (!$email && !$senha) {
+                echo 'vazio';
+            }else{
+                $conexao = Conexao::getConnection();
 
-        public function logar(){
+                $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha'";
+                $result = $conexao->query($sql);
+                $row = $result->fetch_assoc();
+                
+                if ($result->num_rows > 0) {                   
 
-        } 
-        public function validar($email, $senha){
-            //conexão com o banco de dados 
-            $dbHost = "127.0.0.1:3306";
-            $dbUsername = "root";
-            $dbPassword = "root";
-            $dbName = "loginregistry";
+                    if ($row['senha'] == $senha) {
+                        session_start();
 
-            $con = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+                        $this->usuario = $row['username'];
+                        $_SESSION['usuario'] = $this->getUsuario();
 
-            if ($con->connect_error) {
-                die("Falha na conexão: " . $con->connect_error);
-            }
-
-            //conectar ao banco de dados
-
-            $sql = "SELECT * FROM usuarios WHERE email='$email' AND senha='$senha'";
-            $result = $con->query($sql) or die("Falha na execução do código SQL: " . $con->error);
-
-            //selecionar o usuario que tenha o mesmo email do informado
-            //conferir a senha do usuario
-
-            if (mysqli_num_rows($result) > 0) {
-                    $user = $result->fetch_assoc();
-            
-                    if(password_verify($senha, $user['senha'])){
-                        // Inicia a sessão
-                        if (!isset($_SESSION)) {
-                            session_start();
-                        }
-            
-                        //pego o nome do usuario no banco de dados e armazeno na minha session
-                        $nomeUsuario = $user['username'];        
-                        $_SESSION['nomeUsuario'] = $nomeUsuario;
-            
-                        //redirecionando o meu usuario para a pagina principal do site
-                        header('Location: welcome.php');
+                        header('Location: ../view/welcome.php');
                         exit();
-                    //}
-            
-                } else {
-                    //errorHttp(404, "Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.");
-                    echo "404, Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.";
+                    }
+                }else{
+                    //$config = new Config();
+                    $config = Config::errorHttp($errorCode, $errorMessage);
+                    $config->errorHttp(404,"Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.");
+                    //var_dump($config);
                     exit();
                 }
-                
-            //se tiver tudo oque... criar a session e direcionar o usuario pra login com sucesso
-            //se tiver um erro... manda de volta pra a tela inicial
-        }
-        // public function cadastrar(){
+            }
 
+            $conexao->close();
+        }
+        
+        public function cadastrar($usuario, $senha, $email, $nome, $dataNasc){
+            $conexao = Conexao::getConnection();
+            
+            $this->usuario = $conexao->real_escape_string($_POST["username"]);
+            $this->email = $conexao->real_escape_string($_POST["email"]);
+            $this->senha = $conexao->real_escape_string($_POST["senha"]);
+            $this->nome = $conexao->real_escape_string($_POST["nome_completo"]);
+            $this->dataNasc = $conexao->real_escape_string($_POST["nascimento"]);
+            
+            $sql1 = "INSERT INTO usuarios (username, email, senha, nome, nascimento) VALUES ('$usuario', '$email', '$senha', '$nome', '$dataNasc')"; 
+
+            if ($conexao->query($sql1) === TRUE) {
+                echo "Cadastro realizado com sucesso!";
+            } else {
+                echo "Erro ao cadastrar usuário: " . $conexao->error;
+            }
+
+            $conexao->close();
+        }
+
+        public function logout() {
+            require_once 'Logout.php';
+            new Logout();
+        }
+    
+        // public function errorHttp($errorCode, $errorMessage) {            
+        //     header("Location: error.php?code=$errorCode&message=$errorMessage");
+        //     exit();                
         // }
 
         public function getId() {

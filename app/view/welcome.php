@@ -1,11 +1,15 @@
 <?php
     session_start();
-    include_once 'config.php';
+    //require_once 'app\config\config.php';
 
-    // Verifica se a variável de sessão 'nomeUsuario' está definida
-    if(isset($_SESSION['nomeUsuario'])){
-        $nomeUsuario = $_SESSION['nomeUsuario']; 
-
+    if(isset($_SESSION['usuario'])){
+        $u = $_SESSION['usuario'];
+    } else {
+        echo 'x' ; 
+        // errorHttp(40333333333, "Você não pode acessar esta página porque não esta logado. Volte e faça seu login!");  
+        // exit;
+    } 
+    
 ?>
 
 <!DOCTYPE html>
@@ -21,14 +25,15 @@
     <div class="flex flex-col items-center justify-center bg-green-300 container p-5 mx-2 rounded-xl shadow-[0_0_10px_rgba(0, 0, 0, 0.1)]">
 
         <h1 class="text-3xl font-bold text-green-800 mb-4">
-            Bem-vindo ao Jardim <strong><?php echo $nomeUsuario;?></strong>!
+            Bem-vindo(a) <strong><?php echo $u?></strong>! 
         </h1>
+        <!-- $this->getUsuario() -->
 
         <p class="text-lg text-green-700 mb-8">
             Obrigado por fazer login. Aproveite as flores!
         </p>
 
-        <a href="logout.php" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        <a href="../../config/logout.php" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
             Voltar
         </a>
 
@@ -36,10 +41,3 @@
 
 </body>
 </html>
-
-<?php
-    } else {  
-        errorHttp(403, "Você não pode acessar esta página porque não esta logado. Volte e faça seu login!");  
-        exit;
-    }
-?>

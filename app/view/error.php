@@ -1,6 +1,10 @@
 <?php 
+    require_once 'app\model\Usuario.php';
     if(!isset($_SESSION)){
         session_start();
+        echo 'estou dentro de error';
+    }else{
+        echo 'teste falhou';
     }
 ?>
 
@@ -24,7 +28,7 @@
                 echo "<h1 class='text-3xl font-bold text-green-800 mb-4'>Erro $errorCode</h1>";
                 echo "<p class='text-lg text-green-700 mb-8'>$errorMessage</p>";
             } else {
-                echo "<h1 class='text-3xl font-bold text-green-800 mb-4'>Ops! Ocorreu um erro desconhecido.</h1>";
+                echo "<h1 class='text-3xl font-bold text-green-800 mb-4'>Opssssss! Ocorreu um erro desconhecido.</h1>";
             }
         ?>
 
