@@ -2,7 +2,7 @@
     require_once 'app\controller\LoginController.php';
     require_once 'lib\database\conexao.php';
     require_once './index.php';
-    require_once __DIR__ . '/app/view/welcome.php';
+   require_once __DIR__ . '\..\view\welcome.php';
     //require_once 'app\config\config.php';
     //require_once 'app\config\error.php';
   //  require_once 'app/view/error.php';
@@ -50,13 +50,13 @@
                 if ($result->num_rows > 0) {                   
 
                     if ($row['senha'] == $senha) {
-                        session_start();
+                        //session_start();
 
                         $this->usuario = $row['username'];
                         $_SESSION['usuario'] = $this->getUsuario();
 
-                        header('Location: /app/view/welcome.php');
-                        //echo 'funcionou - estamos na classe usuario';
+                       //header('Location: \view\welcome.php');
+                        echo 'funcionou - estamos na classe usuario';
                         exit();
                     }
                 }else{
