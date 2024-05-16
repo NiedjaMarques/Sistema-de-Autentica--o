@@ -2,10 +2,10 @@
     require_once 'app\controller\LoginController.php';
     require_once 'lib\database\conexao.php';
     require_once './index.php';
-   require_once __DIR__ . '\..\view\welcome.php';
+   //require_once '\..\view\welcome.php';
     //require_once 'app\config\config.php';
     //require_once 'app\config\error.php';
-  //  require_once 'app/view/error.php';
+    require_once(__DIR__ . '/../view/welcome.php');
     use lib\database\Conexao;
 
     class Usuario {
@@ -16,19 +16,15 @@
         private $nome;
         private $dataNasc;
 
-        public function __construct($email, $senha){ //, $usuario, $nome, $dataNasc
-           // $this->usuario = $usuario;
+        public function __construct($email, $senha){
             $this->senha = $senha;
-            $this->email = $email;            
-            //$this->nome = $nome;
-            //$this->dataNasc = $dataNasc;
+            $this->email = $email;              
         }
 
         public function validar($email, $senha){
             if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && (isset($_POST['senha']) && strlen($_POST['senha']) >= 8)) {
 
-                $n->setEmail($_POST['email']);
-                $n->setSenha($_POST['senha']);
+                
 
             } else {
                 //errorHttp(404, "Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.");
@@ -38,7 +34,7 @@
         }
         
         public function logar($email, $senha){
-            if (!$email && !$senha) {
+            if (empty($email) || empty($senha)) {
                 echo 'vazio';
             }else{
                 $conexao = Conexao::getConnection();
@@ -48,14 +44,14 @@
                 $row = $result->fetch_assoc();
                 
                 if ($result->num_rows > 0) {                   
-
+                    session_start();
                     if ($row['senha'] == $senha) {
-                        //session_start();
+                        
 
                         $this->usuario = $row['username'];
                         $_SESSION['usuario'] = $this->getUsuario();
 
-                       //header('Location: \view\welcome.php');
+                       header('Location: \view\welcome.php');
                         echo 'funcionou - estamos na classe usuario';
                         exit();
                     }

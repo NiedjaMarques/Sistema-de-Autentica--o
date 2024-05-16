@@ -4,15 +4,36 @@
 
     $uri = $_SERVER['REQUEST_URI'];
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-        $l = new LoginController();
-        $l->login($email, $senha);
-    }else{
-        echo "estamos no index.php";
+        if (isset($_POST['login'])) {
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+
+            $l = new LoginController();
+            $l->login($email, $senha);
+
+        } elseif (isset($_POST['cadastrar'])) {
+
+            if (!empty($_POST['username']) && !empty($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['nome_completo']) && !empty($_POST['nascimento'])) {
+
+                $usuario = $_POST['username'];
+                $senha = $_POST['senha'];
+                $email = $_POST['email'];
+                $nome = $_POST['nome_completo'];
+                $dataNasc = $_POST['nascimento'];
+    
+                $p1 = new Usuario($usuario, $senha, $email, $nome, $dataNasc);
+                $p1->cadastrar($usuario, $senha, $email, $nome, $dataNasc);
+
+            } else {
+                echo 'erro no cadastro index.php';
+            }
+        } else {
+            echo 'estamos no index.php';
+        }
     }
+
 
 
 
