@@ -1,8 +1,8 @@
 <?php
-    require_once 'app\config\Config.php';
-    //require_once 'app\controller\LoginController.php';
+    require_once 'app\controller\LoginController.php';
     require_once 'lib\database\conexao.php';
     require_once './index.php';
+    require_once __DIR__ . '/app/view/welcome.php';
     //require_once 'app\config\config.php';
     //require_once 'app\config\error.php';
   //  require_once 'app/view/error.php';
@@ -16,12 +16,25 @@
         private $nome;
         private $dataNasc;
 
-        public function __construct($email, $senha){
-            $this->usuario = $usuario;
+        public function __construct($email, $senha){ //, $usuario, $nome, $dataNasc
+           // $this->usuario = $usuario;
             $this->senha = $senha;
             $this->email = $email;            
-            $this->nome = $nome;
-            $this->dataNasc = $dataNasc;
+            //$this->nome = $nome;
+            //$this->dataNasc = $dataNasc;
+        }
+
+        public function validar($email, $senha){
+            if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && (isset($_POST['senha']) && strlen($_POST['senha']) >= 8)) {
+
+                $n->setEmail($_POST['email']);
+                $n->setSenha($_POST['senha']);
+
+            } else {
+                //errorHttp(404, "Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.");
+                echo "404, Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.";
+                exit();
+            }
         }
         
         public function logar($email, $senha){
@@ -42,14 +55,17 @@
                         $this->usuario = $row['username'];
                         $_SESSION['usuario'] = $this->getUsuario();
 
-                        header('Location: ../view/welcome.php');
+                        header('Location: /app/view/welcome.php');
+                        //echo 'funcionou - estamos na classe usuario';
                         exit();
                     }
                 }else{
-                    //$config = new Config();
-                    $config = Config::errorHttp($errorCode, $errorMessage);
-                    $config->errorHttp(404,"Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.");
-                    //var_dump($config);
+                    // //$config = new Config();
+                    // $config = Config::errorHttp($errorCode, $errorMessage);
+                    // $config->errorHttp(404,"Ops! Seu usuário não foi encontrado. Por favor, volte e cadastre-se para acessar.");
+                    // //var_dump($config);\
+
+                    echo 'não funcionou - estamos na classe usuario';
                     exit();
                 }
             }
@@ -107,6 +123,18 @@
         }    
         public function setEmail($email) {
             $this->email = $email;
+        }
+        public function getNome() {
+            return $this->nome;
+        }    
+        public function setNome($nome) {
+            $this->nome = $nome;
+        }  
+        public function getDataNasc() {
+            return $this->dataNasc;
+        }    
+        public function setDataNasc($dataNasc) {
+            $this->dataNasc = $dataNasc;
         }   
     }
 ?>

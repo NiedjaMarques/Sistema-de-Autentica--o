@@ -1,16 +1,39 @@
 <?php
-    // require_once 'app\model\Usuario.php'; // class usuario
+    require_once ('app/model/Usuario.php');
+    require_once ('app/controller/LoginController.php');
+
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        $l = new LoginController();
+        $l->login($email, $senha);
+    }else{
+        echo "estamos no index.php";
+    }
+
+
+
+    //require_once 'app\model\Usuario.php'; // class usuario
     // //require_once 'app\controller\LoginController.php'; //não serve pra nada ainda
     // require_once 'lib\database\conexao.php';//conexão com o banco de dados   
     // require_once 'app\config\config.php'; //redireciona pra pagina de erros
 
-    // //Processamento de Login
+    //Processamento de Login
     // if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //     $email = isset($_POST['email']) ? $_POST['email'] : null;
     //     $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
 
-    //     $pessoa = new Usuario($email, $senha);
-    //     $pessoa->logar($email, $senha);
+    //     $p = new Usuario($email, $senha);
+
+    //     require_once 'app/controller/LoginController.php';
+    //     $l = new LoginController();
+    //     $l->check();
+
+        
+    //     //$pessoa->logar($email, $senha);
     // }else {
     //     echo 'não deu certo gatinha';
     // }
@@ -26,22 +49,22 @@
     //     exit();
     // }
 
-    if (isset($_POST['cadastrar'])) {
-        // Verifica se todos os campos do formulário foram preenchidos
-        if (!empty($_POST['username']) && !empty($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['nome_completo']) && !empty($_POST['nascimento'])) {
-            // Obtém os valores do formulário
-            $usuario = $_POST['username'];
-            $senha = $_POST['senha'];
-            $email = $_POST['email'];
-            $nome = $_POST['nome_completo'];
-            $dataNasc = $_POST['nascimento'];
+    // if (isset($_POST['cadastrar'])) {
+    //     // Verifica se todos os campos do formulário foram preenchidos
+    //     if (!empty($_POST['username']) && !empty($_POST['senha']) && !empty($_POST['email']) && !empty($_POST['nome_completo']) && !empty($_POST['nascimento'])) {
+    //         // Obtém os valores do formulário
+    //         $usuario = $_POST['username'];
+    //         $senha = $_POST['senha'];
+    //         $email = $_POST['email'];
+    //         $nome = $_POST['nome_completo'];
+    //         $dataNasc = $_POST['nascimento'];
     
-            // Chama o método cadastrar com os valores obtidos
-            $pessoa->cadastrar($usuario, $senha, $email, $nome, $dataNasc);
-        } else {
-            echo 'Por favor, preencha todos os campos.';
-        }
-    }
+    //         // Chama o método cadastrar com os valores obtidos
+    //         $pessoa->cadastrar($usuario, $senha, $email, $nome, $dataNasc);
+    //     } else {
+    //         echo 'Por favor, preencha todos os campos.';
+    //     }
+    // }
 
     
     
