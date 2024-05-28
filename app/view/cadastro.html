@@ -32,7 +32,7 @@
                 </h1>
     
                 <!-- FORMULARIO  -->
-                <form action="/index.php" method="POST" autocomplete="on" >
+                <form action="/index.php?route=cadastro" method="POST" autocomplete="on" >
                     
                     <div class="flex items-center justify-center py-2">
                         <label class="text-green-600 drop-shadow-md" for="username">Usuário:</label><br>
@@ -61,22 +61,27 @@
     
                     <div class="flex flex-row justify-evenly my-4 ">
                         
-                        <div class="flex justify-center text-md text-green-700 py-2  font-bold">
+                        <div onclick="cadastrar()" class="flex cursor-pointer justify-center text-md text-green-700 py-2  font-bold hover:bg-green-200 p-5 rounded-xl duration-700 ease-out-ease">
                             <input class="cursor-pointer" type="submit" name="cadastrar" value="Cadastrar">
-                        </div>
-    
+                        </div>   
                         
-                        <a class="flex justify-center text-md text-green-700 py-2 font-bold" href="/app/view/index.html">Voltar</a>
+                        <a class="flex justify-center text-md text-green-700 py-2 font-bold hover:bg-green-200 p-5 rounded-xl duration-700 ease-out-ease" href="/app/view/index.html">Voltar</a>
                         
-    
-                    </div>                    
-    
-                </form>  
-    
-            </div>
+                    </div>  
+                    
+                    <div id="msgCadastro" class="text-green-700 py-2 text-center transition duration-100 ease-out">
 
-        </div>
-        
+                    </div>
+                </form>      
+            </div>
+        </div>        
     </div>
+
+    <script>
+        function cadastrar(){
+            let msgCadastro = document.getElementById("msgCadastro");
+            msgCadastro.innerText = "Cadastro realizado com sucesso!";
+        }
+    </script>
 </body>
 </html>

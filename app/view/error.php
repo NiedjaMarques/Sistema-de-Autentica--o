@@ -1,10 +1,7 @@
-<?php 
-    require_once 'app\model\Usuario.php';
+<?php
+    //require_once 'app\model\Usuario.php';
     if(!isset($_SESSION)){
         session_start();
-        echo 'estou dentro de error';
-    }else{
-        echo 'teste falhou';
     }
 ?>
 
