@@ -1,6 +1,5 @@
 <?php
-    //require_once 'app\model\Usuario.php';
-    if(!isset($_SESSION)){
+    if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
 ?>
@@ -25,11 +24,11 @@
                 echo "<h1 class='text-3xl font-bold text-green-800 mb-4'>Erro $errorCode</h1>";
                 echo "<p class='text-lg text-green-700 mb-8'>$errorMessage</p>";
             } else {
-                echo "<h1 class='text-3xl font-bold text-green-800 mb-4'>Opssssss! Ocorreu um erro desconhecido.</h1>";
+                echo "<h1 class='text-3xl font-bold text-green-800 mb-4'>Ops! Ocorreu um erro desconhecido.</h1>";
             }
         ?>
 
-        <a href="index.html" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        <a href="/sair" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
             Voltar para o Jardim
         </a>
 

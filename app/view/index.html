@@ -11,7 +11,7 @@
 
     <div class="absolute inset-0 filter blur-sm bg-center flex justify-center items-center">
 
-        <img class="h-screen w-screen object-cover" src="imagens/plantas2.jpg" alt="imagem folhas">
+        <img class="h-screen w-screen object-cover" src="/app/view/imagens/plantas2.jpg" alt="imagem folhas">
 
     </div>
 
@@ -21,7 +21,7 @@
 
             <div class="md:shrink-0 ">
                 
-                <img class="h-28 sm:48 w-full object-cover md:h-full md:w-48" src="imagens/planta.jpg" alt="imagem planta">
+                <img class="h-28 sm:48 w-full object-cover md:h-full md:w-48" src="/app/view/imagens/plantas2.jpg" alt="imagem planta">
 
             </div>
 
@@ -32,7 +32,7 @@
                 </h1>
                 
                 <!-- FORMULARIO  -->
-                <form action="/index.php" method="POST" autocomplete="on"> 
+                <form action="/login/submit" method="POST" autocomplete="on"> 
 
                     <!-- INPUT EMAIL -->
                     <div class="flex items-center justify-center">
@@ -58,20 +58,13 @@
     
                     </div>
 
-                     <!-- INPUT SUBMIT -->    
                     <div class="flex border justify-center p-3 w-36 h-26 mx-auto my-3 sm:my-4 text-sm font-bold text-white rounded-md bg-gradient-to-r from-green-400 to-green-600 cursor-pointer"> 
     
-                        <input class="cursor-pointer" type="submit" name="login" value="LOGIN">
+                        <input class="cursor-pointer" type="submit" value="LOGIN">
     
                     </div>
-                    
-                     <!-- LINK ERRO - PAGINA EM MANUTENÇÃO -->
-                    <a onclick="manutençao()" class="cursor-pointer flex justify-center text-sm text-green-700 py-2 ">
-                        Esqueceu sua senha ?
-                    </a>
 
-                     <!-- LINK ERRO - PAGINA EM MANUTENÇÃO  -->
-                    <a href="cadastro.html" class="flex justify-center text-sm text-green-700 py-2 ">
+                    <a href="/cadastro" class="flex justify-center text-sm text-green-700 py-2 ">
                         Cadastre-se
                     </a>
     
@@ -80,12 +73,7 @@
             </div>
 
         </div>
+        
     </div>
-
-    <script>
-        function manutençao(){
-            window.location.href = 'error.php?code=503&message=Desculpe, a página está em manutenção. Por favor, tente novamente mais tarde.';                
-        }
-    </script>
 </body>
 </html>

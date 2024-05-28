@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- LINK DO TOASTIFY -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" 
+    />
 </head>
 
 <body class="flex justify-center items-center relative h-screen w-screen">   
 
     <div class="absolute inset-0 filter blur-sm bg-center flex justify-center items-center">
 
-        <img class="h-screen w-screen object-cover" src="imagens/planta.jpg" alt="imagem folhas">
+        <img class="h-screen w-screen object-cover" src="/app/view/imagens/planta.jpg" alt="imagem folhas">
 
     </div>
 
@@ -21,7 +28,7 @@
 
             <div class="md:shrink-0 hidden md:flex">
                 
-                <img class="h-28 sm:h-48 w-full object-cover md:h-full md:w-48" src="imagens/plantas2.jpg" alt="imagem planta">
+                <img class="h-28 sm:h-48 w-full object-cover md:h-full md:w-48" src="/app/view/imagens/plantas2.jpg" alt="imagem planta">
     
             </div>
     
@@ -30,9 +37,8 @@
                 <h1 class="py-2 font-bold text-2xl sm:text-3xl md:text-4xl text-center">
                     Cadastre-se!
                 </h1>
-    
-                <!-- FORMULARIO  -->
-                <form action="/index.php?route=cadastro" method="POST" autocomplete="on" >
+
+                <form action="/cadastro/submit" method="POST" autocomplete="on" >
                     
                     <div class="flex items-center justify-center py-2">
                         <label class="text-green-600 drop-shadow-md" for="username">Usuário:</label><br>
@@ -54,18 +60,13 @@
                         <input class="ml-2 border rounded-md focus:outline-none p-2 w-52 drop-shadow-md" type="text" id="nome_completo" name="nome_completo" required placeholder="Nome completo">
                     </div>
     
-                    <div class="flex items-center justify-center py-2">
-                        <label class="text-green-600 drop-shadow-md" for="nascimento" >Data de nasc:</label>
-                        <input class="ml-2 border rounded-md focus:outline-none p-2 w-38 md:w-48 drop-shadow-md" type="date" id="nascimento" name="nascimento" required>
-                    </div>
-    
                     <div class="flex flex-row justify-evenly my-4 ">
                         
                         <div onclick="cadastrar()" class="flex cursor-pointer justify-center text-md text-green-700 py-2  font-bold hover:bg-green-200 p-5 rounded-xl duration-700 ease-out-ease">
                             <input class="cursor-pointer" type="submit" name="cadastrar" value="Cadastrar">
                         </div>   
                         
-                        <a class="flex justify-center text-md text-green-700 py-2 font-bold hover:bg-green-200 p-5 rounded-xl duration-700 ease-out-ease" href="/app/view/index.html">Voltar</a>
+                        <a class="flex justify-center text-md text-green-700 py-2 font-bold hover:bg-green-200 p-5 rounded-xl duration-700 ease-out-ease" href="/login">Voltar</a>
                         
                     </div>  
                     
@@ -77,11 +78,34 @@
         </div>        
     </div>
 
+
+    <!-- FAZER TESTES COM O TOASTIFY -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
     <script>
-        function cadastrar(){
-            let msgCadastro = document.getElementById("msgCadastro");
-            msgCadastro.innerText = "Cadastro realizado com sucesso!";
-        }
+
+        Toastify({
+        text: "Ops o restaurante está fechado!",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "#ef4444",
+        },
+        }).showToast();
+        return;
+
+        // -----------------------------------------------    
+        
+        // function cadastrar(){ // VERIFICAR - APAGAR?
+        //     let msgCadastro = document.getElementById("msgCadastro");
+        //     msgCadastro.innerText = "Cadastro realizado com sucesso!";
+        // }
     </script>
 </body>
 </html>
