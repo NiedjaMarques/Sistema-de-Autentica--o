@@ -6,7 +6,7 @@
     <title>Cadastre-se</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- LINK DO TOASTIFY -->
+    <!-- TOASTIFY -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -78,34 +78,33 @@
         </div>        
     </div>
 
-
-    <!-- FAZER TESTES COM O TOASTIFY -->
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
+    <!-- TOASTIFY -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var mensagem = urlParams.get('mensagem');
+            var type = urlParams.get('type');
 
-        Toastify({
-        text: "Ops o restaurante está fechado!",
-        duration: 3000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "#ef4444",
-        },
-        }).showToast();
-        return;
+            if (mensagem && type) {
+                showToast(mensagem, type);
+            }
+        });   
 
-        // -----------------------------------------------    
-        
-        // function cadastrar(){ // VERIFICAR - APAGAR?
-        //     let msgCadastro = document.getElementById("msgCadastro");
-        //     msgCadastro.innerText = "Cadastro realizado com sucesso!";
-        // }
+        function showToast(mensagem, type) {
+            var backgroundColor = type === 'success'? '#32CD32' : '#FF0000';
+            Toastify({
+                text: mensagem,
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                backgroundColor: backgroundColor,
+                className: "border border-none rounded-md p-2"
+            }).showToast();
+        }
     </script>
 </body>
 </html>

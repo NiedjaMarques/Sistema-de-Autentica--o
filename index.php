@@ -9,7 +9,7 @@
     $router->add('/login/submit', 'AuthController@login');
     $router->add('/sair', 'AuthController@logout');
     $router->add('/welcome', 'AuthController@bemvindo'); 
-    $router->add('/cadastro' , 'UserController@loginCadastr');
+    $router->add('/cadastro' , 'UserController@cadastrForm');
     $router->add('/cadastro/submit', 'UserController@cadastrar');
     
     $uri = $_SERVER['REQUEST_URI'];
