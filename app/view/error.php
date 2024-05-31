@@ -17,7 +17,6 @@
     <div class="flex flex-col items-center justify-center h-screen">
 
         <?php
-            // Verificar se o código de erro foi passado via parâmetro GET
             if(isset($_GET['code']) && isset($_GET['message'])) {
                 $errorCode = $_GET['code'];
                 $errorMessage = $_GET['message'];

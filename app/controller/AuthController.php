@@ -59,7 +59,7 @@
                             exit();
                         }
                     }else{
-                        showErro::errorHttp(401, "Não autorizado. Por favor, faça seu cadastro.");
+                        showErro::errorHttp(401, "Usuario não encontrado. Por favor, faça seu cadastro.");
                         exit();
                     }
                 }else{
